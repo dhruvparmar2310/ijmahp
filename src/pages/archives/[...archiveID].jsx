@@ -1,0 +1,443 @@
+import BreadCrumb from '@/components/BreadCrumb'
+import Head from 'next/head'
+import { useRouter, withRouter } from 'next/router'
+import React, { Fragment, useEffect, useMemo, useRef, useState } from 'react'
+import { Button, Form, Table } from 'react-bootstrap'
+import { saveAs } from 'file-saver'
+import { FaUserCircle, FaEye, FaAngleLeft, FaAngleRight } from "react-icons/fa6"
+import { FaDownload } from "react-icons/fa6"
+import { Abril_Fatface, Comfortaa, Inter, Ubuntu } from 'next/font/google'
+import { GrFormPrevious, GrPrevious, GrTextAlignFull } from "react-icons/gr"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faAlignLeft, faCircleDown, faEye, faFilePdf, faLink, faQuoteLeft, faShare, faSpinner } from '@fortawesome/free-solid-svg-icons'
+import Link from 'next/link'
+import Image from 'next/image'
+import Skeleton from 'react-loading-skeleton'
+import axios from 'axios'
+import { archiveList, archives } from '@/data/archives'
+import advertiseImg from '../../../public/assets/img/archives/webinar.png'
+import { useForm } from 'react-hook-form'
+import { TEXT_LOGO } from '@/contstant'
+const inter = Inter({ subsets: ['latin'], weight: ['400'], style: ['normal'] })
+
+const PAGE_SIZE = 10;
+function ArchiveID ({ data }) {
+    const router = useRouter()
+    const { archiveID, sArticle } = router.query
+
+    const { register, watch, setValue } = useForm({
+        mode: 'onChange',
+        defaultValues: { search: "" }
+    });
+    const searchValue = watch("search");
+
+    const archivePath = Array.isArray(archiveID) ? archiveID : [];
+    const [articleData, setArticleData] = useState({})
+    const [currentPage, setCurrentPage] = useState(1);
+    const [filteredData, setFilteredData] = useState(articleData?.aJournals || []);
+    const [isSearching, setIsSearching] = useState(false);
+    const totalPages = Math.ceil(filteredData?.length / PAGE_SIZE);
+
+    const [currentArticle, setCurrentArticle] = useState({
+        volume: '',
+        issue: '',
+        year: '',
+        pdf: ''
+    })
+
+    useEffect(() => {
+        if (archiveID) {
+            const [publicationYear, Volume, Issue, journalNo] = archiveID
+            let sArticleStr = `Volume ${Volume}, Issue ${Issue}`
+
+            setCurrentArticle({
+                volume: Volume,
+                issue: Issue,
+                year: publicationYear,
+                pdf: archiveList[publicationYear]?.find(issue => issue?.sName === sArticleStr)?.sPdfFile,
+            })
+
+            const data = archiveID?.length === 3 ? archiveList[publicationYear]?.find(issue => issue?.sName === sArticleStr)
+                : archiveID?.length === 4 && (archiveList[publicationYear]?.find(issue => issue?.sName === sArticleStr)?.aJournals?.find(journal => journal?._id === journalNo))
+
+            setArticleData(data)
+            // archiveList[publicationYear]?.find(issue => issue?.sName === sArticleStr)
+
+        }
+    }, [archiveID])
+
+
+    const handleDOINavigation = () => {
+        window.open('https://ijmahp.co.in/' + articleData?.sDownLoadUrl, '_blank')
+    }
+
+    const paginatedData = useMemo(() => {
+        const start = (currentPage - 1) * PAGE_SIZE;
+        const end = start + PAGE_SIZE;
+        return filteredData?.slice(start, end);
+    }, [currentPage, filteredData]);
+
+    useEffect(() => {
+        if (searchValue !== undefined) {
+            setIsSearching(true);
+        }
+        const timer = setTimeout(() => {
+            if (!searchValue?.trim()) {
+                setFilteredData(articleData?.aJournals);
+                setCurrentPage(1);
+                setIsSearching(false);
+                return;
+            }
+
+            const keyword = searchValue.toLowerCase();
+
+            const result = articleData?.aJournals?.filter(item => {
+                const titleMatch = item.citation_title
+                    ?.toLowerCase()
+                    .includes(keyword);
+
+                const authorMatch = item.citation_author
+                    ?.join(" ")
+                    .toLowerCase()
+                    .includes(keyword);
+
+                return titleMatch || authorMatch;
+            });
+
+            setFilteredData(result);
+            setCurrentPage(1);
+            setIsSearching(false);
+        }, 400);
+
+        return () => clearTimeout(timer);
+    }, [searchValue, articleData?.aJournals]);
+
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }, [currentPage]);
+    return (
+        <>
+            <Head>
+                {archiveID?.length === 3 ? (<title>Volume {currentArticle?.volume} | Issue {currentArticle?.issue} | IJMAHP</title>) : <title>{articleData?.citation_title} - IJMAHP</title>}
+                <meta charset="utf-8"></meta>
+                <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0" />
+
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
+                <meta name='keywords' content={`ijmahp volume ${currentArticle?.volume} issue ${currentArticle?.issue}, ${articleData?.citation_title}, ijmahp journals, ijmahp publications, ijmahp articles`} />
+                <meta name="description" content={`Learn about the ${TEXT_LOGO} (IJMAHP). We are an open-access, peer-reviewed journal publishing original research and articles in Medical & Allied Health Professions.`} />
+
+                {archiveID?.length === 3 ? <>
+                    <meta property="og:title" content={`Volume ${currentArticle?.volume} | Issue ${currentArticle?.issue} | IJMAHP`} />
+                    <meta property="og:description" content={`Learn about the ${TEXT_LOGO} (IJMAHP). We are an open-access, peer-reviewed journal publishing original research and articles in Medical & Allied Health Professions.`} />
+                    <meta property="og:url" content={`https://ijmahp.co.in/${currentArticle?.year}/${currentArticle?.volume}/${currentArticle?.issue}`} />
+                    <meta property="og:image" content="favicon.ico" />
+                    <meta property="og:type" content="website" />
+                    <meta name='keywords' content={`ijmahp volume ${currentArticle?.volume} issue ${currentArticle?.issue}, ${articleData?.citation_title} ijmahp, ijmahp journals, ijmahp publications, ijmahp articles, ${articleData?.sCitation_SEO_Keywords?.map(item => item)}`} />
+                </> : <>
+                    <meta property="og:title" content={`${articleData?.citation_title} - IJMAHP`} />
+                    <meta property="og:description" content={`Learn about the ${TEXT_LOGO} (IJMAHP). We are an open-access, peer-reviewed journal publishing original research and articles in Medical & Allied Health Professions.`} />
+                    <meta property="og:url" content={`https://ijmahp.co.in/${currentArticle?.year}/${currentArticle?.volume}/${currentArticle?.issue}/${articleData?._id}`} />
+                    <meta property="og:image" content="favicon.ico" />
+                    <meta property="og:type" content="website" />
+
+                    {/* citation */}
+                    <meta name="citation_title" content={articleData?.citation_title} />
+                    {articleData?.citation_author?.map(author => {
+                        return (
+                            <meta name="citation_author" content={author} key={author} />
+                        )
+                    })}
+                    <meta name="citation_publication_date" content={articleData?.citation_publication_date} />
+                    <meta name="citation_journal_title" content={TEXT_LOGO} />
+                    <meta name="citation_journal_title" content="IJMAHP" />
+                    <meta name="citation_volume" content={articleData?.citation_volume} />
+                    <meta name="citation_issue" content={articleData?.citation_issue} />
+                    <meta name="citation_firstpage" content={articleData?.citation_firstpage} />
+                    <meta name="citation_lastpage" content={articleData?.citation_lastpage} />
+                    <meta name="citation_pdf_url" content={`https://ijmahp.co.in` + articleData?.sDownLoadUrl} />
+                </>}
+
+                <link rel="icon" href="favicon.ico" />
+                <link rel="manifest" href="/manifest.json" />
+
+                {/* <!-- Author and Publisher Meta Tags --> */}
+                <meta name="author" content={TEXT_LOGO} />
+                <meta name="publisher" content={TEXT_LOGO} />
+            </Head>
+
+            <section className={`particular-article-section readArticlePage`} style={{ marginTop: '6rem' }}>
+                {Object?.keys(articleData)?.length === 0 ? <>
+                    <div>
+                        <Skeleton count={1} width={280} height={30} />
+                        <Skeleton count={1} height={5} />
+
+                        <Skeleton count={1} className='mt-4' width={260} height={20} />
+                        <Skeleton count={1} className='mt-3' width={580} height={35} />
+                        <Skeleton count={1} className='mt-1' width={200} height={35} />
+                        <Skeleton count={1} className='mt-3' width={230} height={20} />
+                        <Skeleton count={1} width={200} height={20} />
+
+                        <div className='d-flex gap-3 mt-2 mb-4'>
+                            <Skeleton count={1} width={80} height={20} />
+                            <Skeleton count={1} width={80} height={20} />
+                            <Skeleton count={1} width={80} height={20} />
+                        </div>
+
+                        <Skeleton count={1} className='mt-4' width={260} height={20} />
+                        <Skeleton count={1} className='mt-3' width={580} height={35} />
+                        <Skeleton count={1} className='mt-1' width={200} height={35} />
+                        <Skeleton count={1} className='mt-3' width={230} height={20} />
+                        <Skeleton count={1} width={200} height={20} />
+
+                        <div className='d-flex gap-3 mt-2 mb-4'>
+                            <Skeleton count={1} width={80} height={20} />
+                            <Skeleton count={1} width={80} height={20} />
+                            <Skeleton count={1} width={80} height={20} />
+                        </div>
+
+                        <Skeleton count={1} className='mt-4' width={260} height={20} />
+                        <Skeleton count={1} className='mt-3' width={580} height={35} />
+                        <Skeleton count={1} className='mt-1' width={200} height={35} />
+                        <Skeleton count={1} className='mt-3' width={230} height={20} />
+                        <Skeleton count={1} width={200} height={20} />
+
+                        <div className='d-flex gap-3 mt-2'>
+                            <Skeleton count={1} width={80} height={20} />
+                            <Skeleton count={1} width={80} height={20} />
+                            <Skeleton count={1} width={80} height={20} />
+                        </div>
+
+                        <Skeleton count={1} className='mt-4' width={260} height={20} />
+                        <Skeleton count={1} className='mt-3' width={580} height={35} />
+                        <Skeleton count={1} className='mt-1' width={200} height={35} />
+                        <Skeleton count={1} className='mt-3' width={230} height={20} />
+                        <Skeleton count={1} width={200} height={20} />
+
+                        <div className='d-flex gap-3 mt-2 mb-4'>
+                            <Skeleton count={1} width={80} height={20} />
+                            <Skeleton count={1} width={80} height={20} />
+                            <Skeleton count={1} width={80} height={20} />
+                        </div>
+                    </div>
+                </> :
+                    <div className={`inner-content`}>
+                        {archiveID?.length === 3 &&
+                            (<>
+                                <div className='current-article'>
+                                    <div className={`container ${inter.className} top-header`}>
+                                        <div>
+                                            <h6>Current Issue</h6>
+                                            <h1>
+                                                <span>
+                                                    Volume {currentArticle.volume} | Issue {currentArticle.issue} | {currentArticle.year}
+                                                </span>
+                                            </h1>
+                                            <BreadCrumb basePath={['/', '/archives', `/${archivePath.join('/')}`]} title={`Volume ${currentArticle.volume} | Issue ${currentArticle.issue} | ${currentArticle.year} | Archives | IJMAHP`} />
+                                        </div>
+                                        <Button type='button' onClick={() => router?.push('/archives')}><FontAwesomeIcon icon={faShare} flip='horizontal' /> Go Back</Button>
+                                    </div>
+                                </div>
+                                <div className="container mt-4">
+                                    <div className='all-journal-list'>
+                                        <div className='issue-list'>
+                                            <Form className="mb-4 search-bar">
+                                                <Form.Control
+                                                    type="text"
+                                                    placeholder="Search by title or author..."
+                                                    {...register("search")}
+                                                />
+                                                {watch('search')?.length > 0 && (
+                                                    <Button
+                                                        size="sm"
+                                                        onClick={() => {
+                                                            setValue("search", "");
+                                                            setFilteredData(articleData?.aJournals);
+                                                            setCurrentPage(1);
+                                                            setIsSearching(false);
+                                                        }}
+                                                    >
+                                                        ✕
+                                                    </Button>
+                                                )}
+                                            </Form>
+                                            {isSearching ?
+                                                <div className='text-center my-5'>
+                                                    <FontAwesomeIcon icon={faSpinner} spin size='1x' /> Loading...
+                                                </div>
+                                                :
+                                                paginatedData?.length > 0 ? paginatedData?.map(item => {
+                                                    return (
+                                                        <div key={item?.citation_title} className={`issue-details ${inter.className}`}>
+                                                            <div>
+                                                                <span className={`article-tag`}>{item?.eTag}</span> <span>|</span> <span className={`date`}>Published on {item?.citation_publication_date}</span>
+                                                            </div>
+                                                            <h1 className={`${inter?.className} article-title`}>{item?.citation_title}</h1>
+                                                            <p className={`author-name ${inter?.className}`}> {item?.citation_author?.map(item => item)?.join(', ')} </p>
+                                                            {/* {item?.sDOINo === '-' ? ''
+                                                            : <p className={`doi-number`}>DOI: <span style={{ cursor: 'pointer' }} onClick={() => goToZenodo(item?.sDOINo)}>{item?.sDOINo}</span> <span><FontAwesomeIcon icon={faEye} /> {getArticleStats(item?.sDOINo)}</span></p>
+                                                        } */}
+                                                            <div className='action-bar'>
+                                                                {item?.citation_firstpage === '-' ? '' : <><span>Page No.: {item?.citation_firstpage} - {item?.citation_lastpage}</span><span className={` pipe-symbol`}>|</span></>} <span className={`downLoad-btn`} onClick={() => router.push({
+                                                                    pathname: `/archives/${currentArticle?.year}/${currentArticle?.volume}/${currentArticle?.issue}/${item?._id}`,
+                                                                })}><GrTextAlignFull /> Abstract</span>
+                                                                {/* {archiveID?.[0]?.includes('Volume-2') &&
+                                                                (item?.sDownLoadUrl === '-' ? '' : <><span className={styles?.pipeSymbol}>|</span> <span className={`downLoadBtn`} onClick={() => saveAs(`${item?.sDownLoadUrl}`, `${item?.sName}`)}><FontAwesomeIcon icon={faFilePdf} /> PDF</span></>
+                                                                )} */}
+                                                            </div>
+                                                        </div>
+                                                    )
+                                                }) : <p className='no-record'>No Record Found</p>
+                                            }
+                                            {!isSearching && totalPages > 1 &&
+                                                <div className='pagination-control'>
+                                                    {/* PREV */}
+                                                    <Button
+                                                        onClick={() => setCurrentPage(p => p - 1)}
+                                                        disabled={currentPage === 1}
+                                                        className='prev-btn'
+                                                    >
+                                                        <FaAngleLeft />
+                                                    </Button>
+
+                                                    {/* PAGE NUMBERS */}
+                                                    {paginatedData && ([...Array(totalPages)]?.map((_, index) => {
+                                                        const page = index + 1;
+
+                                                        return (
+                                                            <Button
+                                                                key={page}
+                                                                onClick={() => setCurrentPage(page)}
+                                                                disabled={page === currentPage}
+                                                                className={`page-btn ${page === currentPage ? 'active' : ''}`}
+                                                            >
+                                                                {page}
+                                                            </Button>
+                                                        );
+                                                    }))}
+
+                                                    {/* NEXT */}
+                                                    <Button
+                                                        onClick={() => setCurrentPage(p => p + 1)}
+                                                        disabled={currentPage === totalPages}
+                                                        className='next-btn'
+                                                    >
+                                                        <FaAngleRight />
+                                                    </Button>
+                                                </div>
+                                            }
+                                        </div>
+                                        <div className={`other-indexing`}>
+                                            <div className={`card-design ${inter?.className}`}>
+                                                <div className='card-title'><FontAwesomeIcon className='me-1' icon={faLink} fade size='md' /> Quick Links</div>
+                                                <div className='card-body'>
+                                                    <ul>
+                                                        <li>
+                                                            <Link href='https://app.oxfordabstracts.com/stages/78097/submitter'>Call for Publication</Link>
+                                                        </li>
+                                                        <li>
+                                                            <Link href='/author-tools/guidelines'>Author Guidelines</Link>
+                                                        </li>
+                                                        <li>
+                                                            <Link href='/author-tools/article-processing-charge'>Article Processing Charge (APC)</Link>
+                                                        </li>
+                                                        <li>
+                                                            <Link href='#' onClick={(e) => saveAs(samplePaperFormat, 'Sample Paper - IJMAHP')}>Sample Paper Format</Link>
+                                                        </li>
+                                                        <li>
+                                                            <Link href='/policy/peer-review-policy'>Peer Review Policy</Link>
+                                                        </li>
+                                                        <li>
+                                                            <Link href='/about/indexing'>Indexing</Link>
+                                                        </li>
+                                                        <li>
+                                                            <Link href='/subscription'>Subscription</Link>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div className='ads-img'>
+                                                <p>ADVERTISEMENT</p>
+                                                <Image src={advertiseImg} className='img-fluid' alt='Call For Publication' quality={100} priority />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </>)
+                        }
+
+                        {archiveID?.length === 4 &&
+                            (<div className='specific-journal container'>
+                                <BreadCrumb basePath={['/', '/archives', `/${archivePath.join('/')}`]} title={`${articleData?.citation_title} | Archives | IJMAHP`} />
+                                <div className='issue-list'>
+                                    <div className='issue-details'>
+                                        <div>
+                                            <span className={`article-tag`}>{articleData?.eTag}</span> <span>|</span> <span className={`date`}>Published on IJMAHP Volume {articleData?.citation_volume}, Issue {articleData?.citation_issue}, {articleData?.citation_publication_date}</span>
+                                        </div>
+
+                                        <h1 className={inter?.className}>{articleData?.citation_title}</h1>
+                                        <p className={`author-name ${inter?.className}`}> {articleData?.citation_author?.map(item => item)?.join(', ')} </p>
+                                        <p
+                                            className={`doi-number ${inter?.className}`}
+                                            onClick={() => {
+                                                articleData?.sPdfFile !== '-' ? handleDOINavigation() : ''
+                                            }}
+                                        >
+                                            DOI: {articleData?.sDOINo || 'Not Assigned'}
+                                        </p>
+                                    </div>
+                                </div>
+                                {/*  -heading='Article'>{archiveID?.[2]}</h1> */}
+                                {/* <div className={`${styles?.line} mb-3`}></div> */}
+
+                                {/* <div className={`actions ${inter?.className}`}>
+                                    <span><strong>{articleData?.sAuthor}</strong></span>
+                                    {articleData?.sDOINo === '-' ? "" : <span>DOI: <span style={{ color: 'var(--primary-color)', marginLeft: '5px', cursor: 'auto' }}>{articleData?.sDOINo}</span></span>}
+
+                                    {articleData?.sDownLoadUrl === '-' ? '' : <span variant='dark' size='sm' onClick={() => saveAs(`${articleData?.sDownLoadUrl}`, `${articleData?.sName}`)}>
+                                        <span className={`logo`}><FaDownload /></span> <span>Download PDF</span>
+                                    </span>}
+
+                                    <span>{archiveID?.slice(0, 2)?.join(', ')}</span>
+                                    {articleData?.sPageNo === '-' ? '' : <span>Page No.: {articleData?.sPageNo}</span>}
+                                </div> */}
+
+                                <div className='d-flex justify-content-between flex-wrap'>
+                                    <article>
+                                        <div dangerouslySetInnerHTML={{ __html: articleData?.sContent }} className={`journal-html ${inter?.className}`} />
+                                    </article>
+                                    <div className='right-content'>
+                                        <div className={`card-design ${inter?.className}`}>
+                                            <div className='card-title'><FontAwesomeIcon className='me-1' icon={faQuoteLeft} fade size='md' /> Cite</div>
+                                            <div dangerouslySetInnerHTML={{ __html: articleData?.citation_quotes }} className={`mt-4 citation-text ${inter?.className}`} />
+                                        </div>
+
+                                        <div className={`card-design ${inter?.className} mt-2`} onClick={() => window.open(articleData?.sDownLoadUrl, "_blank")} style={{ cursor: 'pointer' }}>
+                                            <div className='card-title'><FontAwesomeIcon className='me-1' icon={faAlignLeft} size='md' /> Full Text</div>
+                                        </div>
+
+                                        <div className={`card-design ${inter?.className} mt-2`} onClick={() => saveAs(`${articleData?.sDownLoadUrl}`, `IJMAHP-${articleData?.citation_title}`)} style={{ cursor: 'pointer' }}>
+                                            <div className='card-title'><FontAwesomeIcon className='me-1' icon={faCircleDown} size='md' /> Download PDF</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className={`goBackBtn`}>
+                                    <Button variant='link' className={`${inter?.className}`} onClick={() => router.push({
+                                        pathname: `/archives/${currentArticle?.year}/${currentArticle?.volume}/${currentArticle?.issue}`,
+                                    })}>
+                                        <span><FontAwesomeIcon icon={faShare} flip='horizontal' /></span> <span>Previous Page</span>
+                                    </Button>
+                                </div>
+                            </div>)
+                        }
+                    </div>}
+
+            </section >
+        </>
+    )
+}
+
+export default withRouter(ArchiveID)

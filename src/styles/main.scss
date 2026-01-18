@@ -1,0 +1,18 @@
+@import './globals.scss';
+
+// components
+@import './components/header';
+@import './components/footer';
+@import './components/loading-screen';
+@import './components/hero';
+@import './components/breadcrumb';
+
+// pages
+@import './pages/home';
+@import './pages/about/ijmahp';
+@import './pages/about/research-areas';
+@import './pages/author-tools/guidelines';
+@import './pages/editorial-board';
+@import './pages/contact';
+@import './pages/archives/archives';
+@import './pages/conference';

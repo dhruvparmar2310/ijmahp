@@ -1,0 +1,17 @@
+{
+  "theme_color": "#375663",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "/",
+  "name": "Install IJMAHP App",
+  "short_name": "IJMAHP Application",
+  "description": "Welcome to Indian Journal of Medical and Health Sciences (IJMAHP)",
+  "icons": [
+    {
+      "src": "assets/img/logo-2.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+import BreadCrumb from '@/components/BreadCrumb'
+import { Anton, Anton_SC, Inter } from 'next/font/google'
+import Image from 'next/image'
+import React from 'react'
+import Link from 'next/link'
+import Head from 'next/head'
+import { TEXT_LOGO } from '@/contstant'
+
+const anton = Anton({ subsets: ['latin'], weight: ['400'], style: ['normal'] })
+const antonSC = Anton_SC({ subsets: ['latin'], weight: ['400'], style: ['normal'] })
+const inter = Inter({ subsets: ['latin'], weight: ['400', '500', '600', '800'], style: ['normal'] })
+
+const EditorPolicy = () => {
+    return (
+        <>
+            <Head>
+                <title>Editor Policy | {TEXT_LOGO}</title>
+                <meta charset="utf-8"></meta>
+                <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0" />
+
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
+                <meta name='keywords' content='IJMAHP, International Journal of Medical & Allied Health Professions, Indian Journal of Physiotherapy, Open Access Journal, Physiotherapy Journal, Physical Therapy Journal, International Journal for Physiotherapy, PhysioZine, IJPT, IJPHY, UGC Care Journal, UGC Approved Journal, Top 10 Physiotherapy Journal, Scopus Indexed Physiotherapy Journal, Medical Journal, Allied Health Journal, Dental Journal, Ayurvedic Journal, Homeopathy Journal, Nursing Journal, Pharmacy Journal, Occupational Therapy Journal, Speech Therapy Journal, Rehabilitation Journal, Optometry Journal, Public Health Journal, Health Sciences Journal, About IJMAHP, about international journal of medical & allied health professions, PhysioZine, Editor Policy of IJMAHP' />
+                <meta name="description" content={`Learn about the ${TEXT_LOGO} (IJMAHP). We are an open-access, peer-reviewed journal publishing original research and articles in Medical & Allied Health Professions.`} />
+
+                <meta property="og:title" content="Editor Policy of IJMAHP" />
+                <meta property="og:description" content={`Learn about the ${TEXT_LOGO} (IJMAHP). We are an open-access, peer-reviewed journal publishing original research and articles in Medical & Allied Health Professions.`} />
+                <meta property="og:url" content="https://ijmahp.co.in/policy/editor-policy" />
+                <meta property="og:image" content="/favicon.ico" />
+                <meta property="og:type" content="website" />
+
+                <link rel="icon" href="/favicon.ico" />
+                <link rel="manifest" href="/manifest.json" />
+
+                {/* <!-- Author and Publisher Meta Tags --> */}
+                <meta name="author" content={TEXT_LOGO} />
+                <meta name="publisher" content={TEXT_LOGO} />
+
+                {/* Structured Data SEO */}
+                <script type="application/ld+json">
+                    {JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "Organization",
+                        "name": TEXT_LOGO,
+                        "url": "https://ijmahp.co.in/policy/editor-policy",
+                        "logo": "https://ijmahp.co.in/favicon.ico",
+                        "description": `Learn about the ${TEXT_LOGO} (IJMAHP). We are an open-access, peer-reviewed journal publishing original research and articles in Medical & Allied Health Professions.`,
+                        "keywords": ["Physiotherapy Journal", "Open Access", "Research Articles", "Physical Therapy", "Editor Policy of IJMAHP"],
+                        "potentialAction": [
+                            {
+                                "@type": "ReadAction",
+                                "target": "https://ijmahp.co.in/policy/privacy-policy",
+                                "name": "Privacy Policy"
+                            },
+                            {
+                                "@type": "ReadAction",
+                                "target": "https://ijmahp.co.in/policy/terms-and-condition",
+                                "name": "Terms and Conditions"
+                            },
+                        ],
+                    })}
+                </script>
+            </Head>
+            <section className='author-tools-section'>
+                <div className='container inner-content'>
+                    <BreadCrumb basePath={['/', '/editor-policy']} title={`Editor Policy | ${TEXT_LOGO}`} />
+
+                    <h1 className='section-title'>Editor Policy – {TEXT_LOGO} (IJMAHP)</h1>
+                    <hr className='mt-0' />
+
+                    <p className={inter?.className}>
+                        The {TEXT_LOGO} (IJMAHP) is committed to maintaining the highest ethical standards in academic publishing, adhering to the Committee on Publication Ethics (COPE) guidelines. The editorial team ensures a transparent, unbiased, and ethical review process, upholding integrity in research dissemination.
+                    </p>
+
+                    <p className={inter?.className}>
+                        Editors are responsible for making fair and objective publication decisions based on the manuscript’s quality, originality, and relevance to the journal’s scope. Manuscripts undergo a double-blind peer-review process, and editorial decisions are independent of the authors' affiliations, nationality, or institutional connections. Any conflicts of interest must be disclosed and managed appropriately to prevent bias in the editorial and peer-review processes.
+                    </p>
+
+                    <p className={inter?.className}>
+                        The journal follows strict anti-plagiarism policies, using plagiarism detection tools to ensure the originality of submitted work. Cases of suspected misconduct, including data fabrication, falsification, duplicate publication, or ethical violations, are investigated in accordance with COPE’s recommended procedures. If ethical breaches are identified, appropriate actions, such as manuscript corrections, retractions, or editorial warnings, will be taken.
+                    </p>
+
+                    <p className={inter?.className}>
+                        IJMAHP promotes academic integrity and confidentiality by ensuring that all submitted manuscripts and reviewer identities remain confidential. Editors and reviewers must not use unpublished materials from submitted manuscripts for personal research or advantage. The editorial board is committed to ensuring timely processing of submissions, striving to provide constructive feedback to authors to enhance the quality of their work.
+                    </p>
+
+                    <p className={inter?.className}>
+                        The journal also upholds research ethics and compliance with guidelines for human and animal studies, requiring authors to provide ethical approval statements and informed consent when applicable. Any concerns related to ethical misconduct, conflicts of interest, or disputes regarding authorship are addressed in accordance with COPE’s principles, ensuring transparency and fairness.
+                    </p>
+
+                    <p className={inter?.className}>
+                        By adhering to COPE guidelines, IJMAHP aims to foster a credible, ethical, and high-impact platform for the dissemination of research in the field of physical therapy. The editorial board continuously works towards maintaining a rigorous and ethical publishing environment, promoting high-quality research contributions for the global scientific community.
+                    </p>
+                </div>
+            </section>
+        </>
+    )
+}
+
+export default EditorPolicy

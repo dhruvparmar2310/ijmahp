@@ -1,0 +1,282 @@
+.hero-section {
+    width: 100%;
+    height: auto;
+    background: linear-gradient(130deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    background: url('../../../public/assets/img/bg-image-2.png') var(--primary-dark);
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: 145px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    h1,
+    h5 {
+        color: var(--primary-dark);
+        font-family: 'Anton', sans-serif;
+
+        &::selection {
+            color: #000000;
+        }
+    }
+
+    h1 {
+        padding-top: 50px;
+        font-size: 50px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin: 0;
+    }
+
+    p {
+        color: #000;
+        font-weight: 600;
+
+        &::selection {
+            font-weight: 500;
+            color: #ffffff;
+        }
+    }
+
+    .search-bar {
+        width: 100%;
+        max-width: 500px;
+        height: 100%;
+
+        form {
+            width: 100%;
+            height: 100%;
+
+            .input-field {
+                width: 100%;
+
+                >div {
+                    height: 100%;
+
+                    input {
+                        width: 100%;
+                        max-width: 500px;
+                        height: 45px;
+                        border-radius: 99px;
+                    }
+                }
+            }
+        }
+    }
+
+    &:nth-child(1) {
+        p {
+            text-transform: capitalize;
+        }
+    }
+
+    .bottom-btns {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        // flex-wrap: wrap;
+        gap: 0.5vh;
+        row-gap: 1.5vh;
+        margin-top: 5vh;
+    }
+
+    .author-btn {
+        position: relative;
+        margin: 15px;
+        padding: 10px 25px;
+        text-align: center;
+        font-size: 13px;
+        font-weight: 600;
+        text-transform: uppercase;
+        font-family: 'Inter', sans-serif;
+        letter-spacing: 1px;
+        color: var(--white-color);
+        background: var(--primary-dark);
+        border: 2px solid var(--primary-dark);
+        border-radius: 0;
+        cursor: pointer;
+        transition: ease-out 0.5s;
+        -webkit-transition: ease-out 0.5s;
+        -moz-transition: ease-out 0.5s;
+
+        &:hover {
+            border-color: var(--white-color);
+            background: var(--white-color);
+            color: var(--primary-dark);
+        }
+
+        &::after,
+        &::before {
+            position: absolute;
+            content: "";
+            width: 0;
+            height: 0;
+            transition: .5s;
+        }
+
+        &::after {
+            top: -9px;
+            left: -9px;
+            border-top: 3px solid transparent;
+            border-left: 3px solid transparent;
+        }
+
+        &::before {
+            bottom: -9px;
+            right: -9px;
+            border-bottom: 3px solid transparent;
+            border-right: 3px solid transparent;
+        }
+
+        &:hover::after,
+        &:hover::before {
+            width: 30px;
+            height: 30px;
+            border-color: var(--white-color);
+        }
+    }
+
+    .submit-btn {
+        position: relative;
+        margin: 15px;
+        padding: 10px 25px;
+        text-align: center;
+        font-size: 13px;
+        font-weight: 600;
+        text-transform: uppercase;
+        font-family: 'Inter', sans-serif;
+        letter-spacing: 1px;
+        color: #000;
+        background: var(--white-color);
+        border: 2px solid var(--white-color);
+        border-radius: 0;
+        cursor: pointer;
+        transition: ease-out 0.5s;
+        -webkit-transition: ease-out 0.5s;
+        -moz-transition: ease-out 0.5s;
+
+        &:hover {
+            border-color: #000;
+            background: #000;
+            color: var(--white-color);
+        }
+
+        &::after,
+        &::before {
+            position: absolute;
+            content: "";
+            width: 0;
+            height: 0;
+            transition: .5s;
+        }
+
+        &::after {
+            top: -9px;
+            left: -9px;
+            border-top: 3px solid transparent;
+            border-left: 3px solid transparent;
+        }
+
+        &::before {
+            bottom: -9px;
+            right: -9px;
+            border-bottom: 3px solid transparent;
+            border-right: 3px solid transparent;
+        }
+
+        &:hover::after,
+        &:hover::before {
+            width: 30px;
+            height: 30px;
+            border-color: #000;
+        }
+    }
+}
+
+@media (min-width: 1400px) and (max-width: 2000px) {
+    .hero-section {
+        height: 80vh;
+        padding-top: 150px;
+        justify-content: center;
+        gap: 30px;
+
+        h1 {
+            font-size: 55px;
+        }
+
+        h5 {
+            font-size: 30px;
+        }
+
+        p {
+            font-size: 22px;
+            margin: 10px 0;
+            letter-spacing: 0.8px;
+        }
+
+        button {
+            font-size: 22px;
+            padding: 10px 30px !important;
+        }
+    }
+}
+
+@media (min-width: 376px) and (max-width: 576px) {
+    .hero-section {
+        height: auto;
+        padding: 30px 20px;
+        padding-top: 15vh;
+        justify-content: space-evenly;
+
+        h1 {
+            padding: 0;
+        }
+
+        h1,
+        h5,
+        p {
+            text-align: left;
+        }
+
+        p {
+            line-height: 1.5;
+            margin: 10px 0;
+            font-size: 18px;
+        }
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .hero-section {
+        height: auto;
+        padding: 30px 20px;
+        padding-top: 150px;
+        justify-content: center;
+
+        h1 {
+            padding: 0;
+            font-size: 35px;
+            text-align: justify;
+        }
+
+        h1,
+        h5,
+        p {
+            text-align: left;
+        }
+
+        p {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+
+        button {
+            margin: 10px 0;
+            padding: 8px 20px !important;
+            font-size: 15px;
+        }
+    }
+}
