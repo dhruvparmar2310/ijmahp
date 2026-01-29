@@ -6,6 +6,8 @@ import Link from 'next/link'
 import { Col, Row, Table } from 'react-bootstrap'
 import Head from 'next/head'
 import { TEXT_LOGO } from '@/contstant'
+import Darshan from '../../../public/assets/img/members/Dr.DarshanParmar.JPG'
+import Mihirdev from '../../../public/assets/img/members/Dr.MihirdevJhala.jpg'
 
 const anton = Anton({ subsets: ['latin'], weight: ['400'], style: ['normal'] })
 const antonSC = Anton_SC({ subsets: ['latin'], weight: ['400'], style: ['normal'] })
@@ -172,6 +174,34 @@ const JournalInformation = () => {
                             </p>
                         </Col>
                     </Row>
+
+                    <h1 className='section-title'>Message from the Chief Editor:</h1>
+                    <hr className='mt-0' />
+                    <div className='message'>
+                        <div className='profile-image'>
+                            <Image src={Mihirdev} alt='Dr. Mihirdev Jhala' width={150} height={150} className='member-photo' />
+                        </div>
+                        <div className='msg-content'>
+                            <p>
+                                The International Journal of Medical and Allied Health Professions (IJMAHP) is a multidisciplinary, peer-reviewed journal dedicated to promoting quality research across medical, allied, paramedical, and integrative health sciences. IJMAHP provides a global platform for researchers and healthcare professionals to share evidence-based knowledge, uphold ethical publishing standards, and contribute to the advancement of holistic healthcare and public well-being.
+                            </p>
+                            <p className='member-name'>- Dr. Mihirdev Jhala</p>
+                        </div>
+                    </div>
+
+                    <h1 className='section-title mt-3'>Message from the Managing Director:</h1>
+                    <hr className='mt-0' />
+                    <div className='message'>
+                        <div className='profile-image'>
+                            <Image src={Darshan} alt='Dr. Darshan Parmar' width={150} height={150} className='member-photo' />
+                        </div>
+                        <div className='msg-content'>
+                            <p>
+                                The International Journal of Medical and Allied Health Professions (IJMAHP) is envisioned as a credible platform for advancing interdisciplinary research and academic excellence in healthcare. We are committed to supporting ethical publishing, innovation, and knowledge dissemination that bridges clinical practice, research, and education for the betterment of global health.
+                            </p>
+                            <p className='member-name'>- Dr. Darshan Parmar</p>
+                        </div>
+                    </div>
                 </div>
             </section>
         </>
