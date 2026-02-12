@@ -20,6 +20,8 @@
             width: 120px;
             height: 120px;
             overflow: hidden;
+            display: grid;
+            place-items: center;
 
             img {
                 width: 100%;
@@ -28,8 +30,9 @@
             }
 
             svg {
-                width: 100px;
-                height: 100px;
+                width: 100%;
+                height: 100%;
+                transform: scale(0.6);
             }
         }
 
@@ -39,6 +42,7 @@
 
             p {
                 margin: 0;
+                text-wrap: wrap;
             }
 
             .member-name {
@@ -92,14 +96,21 @@
         }
 
         .member-card {
+            flex-direction: column;
+            justify-content: center;
+
             .left-content {
-                width: 250px;
-                height: 150px;
+                width: 40%;
+                height: 200px;
             }
 
             .right-content {
                 .member-name {
                     font-size: 23px;
+                }
+
+                p {
+                    font-size: 14px;
                 }
             }
         }
@@ -113,18 +124,21 @@
         }
 
         .member-card {
+            flex-direction: column;
+            justify-content: center;
+
             .left-content {
-                width: 250px;
-                height: 150px;
+                width: 50%;
+                height: 180px;
             }
 
             .right-content {
                 .member-name {
-                    font-size: 22px;
+                    font-size: 20px;
                 }
 
                 p {
-                    font-size: 15px;
+                    font-size: 13px;
                 }
             }
         }
