@@ -1,13 +1,23 @@
 import BreadCrumb from '@/components/BreadCrumb'
-import React from 'react'
-import Head from 'next/head'
-import { TEXT_LOGO } from '@/contstant'
 import { Anton, Anton_SC, Inter } from 'next/font/google'
+import Image from 'next/image'
+import React from 'react'
+import drDarshan from '../../public/assets/img/members/Dr.DarshanParmar.JPG'
+import drMihirdev from '../../public/assets/img/members/Mihirdev Jhala.PNG'
+import drAmit from '../../public/assets/img/members/DR. AMIT M PATEL PT.png'
+import drMaulik from '../../public/assets/img/members/Maulik Patel.jpeg'
+import drNehal from '../../public/assets/img/members/Nehal Shah.jpeg'
+
+import Head from 'next/head'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { Col, Row } from 'react-bootstrap'
+import { TEXT_LOGO } from '@/contstant'
 
 const anton = Anton({ subsets: ['latin'], weight: ['400'], style: ['normal'] })
 const antonSC = Anton_SC({ subsets: ['latin'], weight: ['400'], style: ['normal'] })
 const inter = Inter({ subsets: ['latin'], weight: ['400', '500', '600', '800'], style: ['normal'] })
+
 const EditorialBoard = () => {
     return (
         <>
@@ -64,90 +74,274 @@ const EditorialBoard = () => {
                     })}
                 </script>
             </Head>
+
             <section className='editorial-board-section'>
                 <div className='container inner-content'>
                     <BreadCrumb basePath={['/']} title={`Editorial Board | ${TEXT_LOGO}`} />
 
-                    <h1 className='section-title'>Editorial Board</h1>
+                    <h1 className='section-title'>Editorial Board - {TEXT_LOGO} (IJMAHP)</h1>
                     <hr className='mt-0' />
 
-                    <p className={`${inter?.className}`}>
-                        The editorial board comprises a panel of experts from various disciplines of medical and allied sciences, who provide their expertise and guidance in deciding the focus and purpose of the journal, and in maintaining the quality and clarity of content.
-                    </p>
+                    <h5>Managing Director:</h5>
+                    <hr className='mt-0' />
+                    <div className='member-card'>
+                        <div className="left-content">
+                            <Image src={drDarshan} alt='Dr. Darshan Parmar' quality={100} className='img-fluid' />
+                        </div>
+                        <div className="right-content">
+                            <p className={`member-name ${antonSC?.className}`}>Dr. Darshan Parmar</p>
+                            <p className={inter?.className}>PhD Scholar, MPT in Neurological Conditions</p>
+                            <p className={inter?.className}>Asst. Professor at Faculty of Physiotherapy, Swaminarayan University</p>
+                            <p className={inter?.className}><strong>Address:</strong> Swaminarayan University, Ahmedabad - Meshana Highway, Kalol, Gujarat - 382725</p>
+                            <p className={inter?.className}><strong>Email:</strong> <span className='highlight'>fophy.darshanp@swaminarayanuniversity.ac.in</span></p>
+                        </div>
+                    </div>
 
-                    <Row>
-                        <Col md={12} lg={6}>
-                            <h5>Managing Director:</h5>
-                            <hr className='mt-0' />
-
-                            <Row>
-                                <Col md={6} lg={12}>
-                                    <div className='member-card'>
-                                        <div className="right-content">
-                                            <p className={`member-name ${inter?.className}`}>Dr. Darshan Parmar</p>
-                                            <p className={inter?.className}>PhD Scholar, MPT in Neurological Conditions</p>
-                                            <p className={inter?.className}>Asst. Professor at Faculty of Physiotherapy, Swaminarayan University</p>
-                                            <p className={inter?.className}><strong>Address:</strong> Swaminarayan University, Ahmedabad - Meshana Highway, Kalol, Gujarat - 382725</p>
-                                            <p className={inter?.className}><strong>Email:</strong> <span className='highlight'>fophy.darshanp@swaminarayanuniversity.ac.in</span></p>
-                                        </div>
-                                    </div>
-                                </Col>
-                            </Row>
-                        </Col>
-                        <Col md={12} lg={6} className='mt-lg-0 mt-3'>
-                            <h5>Chief Editor:</h5>
-                            <hr className='mt-0' />
-
-                            <Row>
-                                <Col md={6} lg={12}>
-                                    <div className='member-card'>
-                                        <div className="right-content">
-                                            <p className={`member-name ${inter?.className}`}>Dr. Mihirdev Jhala</p>
-                                            <p className={inter?.className}>PhD, MPT in Neurological Conditions</p>
-                                            <p className={inter?.className}>Principal, JG College of Physiotherapy</p>
-                                            <p className={inter?.className}><strong>Address:</strong> JG College of Physiotherapy, Opp. Gulab Tower, Ahmedabad, Gujarat - 380061</p>
-                                            <p className={inter?.className}><strong>Email:</strong> <span className='highlight'>prin.jgphysio@jgcolleges.org</span></p>
-                                        </div>
-                                    </div>
-                                </Col>
-                            </Row>
-                        </Col>
-                    </Row>
-
+                    <h5 className='mt-3'>Chief Editor:</h5>
+                    <hr className='mt-0' />
+                    <div className='member-card'>
+                        <div className="left-content">
+                            <Image src={drMihirdev} alt='Dr. Mihirdev Jhala' quality={100} className='img-fluid' />
+                        </div>
+                        <div className="right-content">
+                            <p className={`member-name ${antonSC?.className}`}>Dr. Mihirdev Jhala</p>
+                            <p className={inter?.className}>PhD, MPT in Neurological Conditions</p>
+                            <p className={inter?.className}>Principal, JG College of Physiotherapy</p>
+                            <p className={inter?.className}><strong>Address:</strong> JG College of Physiotherapy, Opp. Gulab Tower, Ahmedabad, Gujarat - 380061</p>
+                            <p className={inter?.className}><strong>Email:</strong> <span className='highlight'>prin.jgphysio@jgcolleges.org</span></p>
+                        </div>
+                    </div>
 
                     <h5 className='mt-3'>Associate Editor:</h5>
                     <hr className='mt-0' />
+                    <div className='member-card mt-3'>
+                        <div className="left-content">
+                            {/* <Image src={drAmrutkuvarShivajiRayjade} alt='Dr. Amrutkuvar Shivaji Rayjade' quality={100} className='img-fluid' /> */}
+                            <FontAwesomeIcon icon={faUser} color='gray' />
+                        </div>
+                        <div className="right-content">
+                            <p className={`member-name ${antonSC?.className}`}>Dr. Roopam Gupta</p>
+                            <p className={inter?.className}>PhD, MD (Anatomy), MHA, MSC LLB, ACME, DIH, EXPHSM</p>
+                            <p className={inter?.className}>Dean & Prof. in Anatomy, Swaminarayan University</p>
+                            <p className={inter?.className}><strong>Address:</strong> Swaminarayan University, Ahmedabad - Meshana Highway, Kalol, Gujarat - 382725</p>
+                            <p className={inter?.className}><strong>Email:</strong> <span className='highlight'>dean.sims@swaminarayanuniversity.ac.in</span></p>
+                        </div>
+                    </div>
+                    <div className='member-card mt-3'>
+                        <div className="left-content">
+                            <Image src={drNehal} alt='Dr. Nehal Shah' quality={100} className='img-fluid' />
+                        </div>
+                        <div className="right-content">
+                            <p className={`member-name ${antonSC?.className}`}>Dr. Nehal Shah</p>
+                            <p className={inter?.className}>PhD in Physiotherapy</p>
+                            <p className={inter?.className}>I/C Principal, SBB College of Physiotherapy</p>
+                            <p className={inter?.className}><strong>Address:</strong> SBB College of Physiotherapy, Ellisbridge Ahmedabad, Gujarat - 380006</p>
+                            <p className={inter?.className}><strong>Email:</strong> <span className='highlight'>principal@sbbptc.edu.in</span></p>
+                        </div>
+                    </div>
+                    <div className='member-card  mt-3'>
+                        <div className="left-content">
+                            <Image src={drAmit} alt='Dr. Amit Patel' quality={100} className='img-fluid' />
+                        </div>
+                        <div className="right-content">
+                            <p className={`member-name ${antonSC?.className}`}>Dr. Amit Patel</p>
+                            <p className={inter?.className}>PhD, MPT in Orthopedic</p>
+                            <p className={inter?.className}>Sr. Lecturer & PG Guide, JG College of Physiotherapy</p>
+                            <p className={inter?.className}><strong>Address:</strong> JG College of Physiotherapy, Opp. Gulab Tower, Ahmedabad, Gujarat - 380061</p>
+                            <p className={inter?.className}><strong>Email:</strong> <span className='highlight'>amit.jgphsio@jgcolleges.org</span></p>
+                        </div>
+                    </div>
 
+                    {/* <h5 className='mt-3'>Advisory Member:</h5>
+                    <hr className='mt-0' />
                     <Row>
-                        <Col md={6} lg={4}>
-                            <div className='member-card'>
+                        <Col lg={6} md={6} sm={12} xs={12}>
+                            <div className='member-card mt-3'>
+                                <div className="left-content">
+                                    <Image src={drYagnaShukla} alt='Dr. Yagna Shukla' quality={100} className='img-fluid' />
+                                </div>
                                 <div className="right-content">
-                                    <p className={`member-name ${inter?.className}`}>Dr. Nehal Shah</p>
-                                    <p className={inter?.className}>PhD in Physiotherapy</p>
-                                    <p className={inter?.className}>I/C Principal, SBB College of Physiotherapy</p>
-                                    <p className={inter?.className}><strong>Address:</strong> SBB College of Physiotherapy, Ellisbridge Ahmedabad, Gujarat - 380006</p>
-                                    <p className={inter?.className}><strong>Email:</strong> <span className='highlight'>principal@sbbptc.edu.in</span></p>
+                                    <p className={`member-name ${antonSC?.className}`}>Dr. Yagna Shukla</p>
+                                    <p className={inter?.className}>PhD, MPT in Musculoskeletal Conditions</p>
+                                    <p className={inter?.className}>Chairperson, National Commission for Allied and Healthcare Professions</p>
                                 </div>
                             </div>
                         </Col>
-                    </Row>
+                        <Col lg={6} md={6} sm={12} xs={12}>
+                            <div className='member-card mt-3'>
+                                <div className="left-content">
+                                    <Image src={drAnjaliBhise} alt='Dr. Anjali Bhise' quality={100} className='img-fluid' />
+                                </div>
+                                <div className="right-content">
+                                    <p className={`member-name ${antonSC?.className}`}>Dr. Anjali Bhise</p>
+                                    <p className={inter?.className}>PhD, MPT in Cardiopulmonary Conditions</p>
+                                    <p className={inter?.className}>Principal, GCS Medical College, Hospital & Research Centre, Ahmedabad
+                                    </p>
+                                </div>
+                            </div>
+                        </Col>
+                        <Col lg={6} md={6} sm={12} xs={12}>
+                            <div className='member-card mt-3'>
+                                <div className="left-content">
+                                    <Image src={drNeetaVyas} alt='Dr. Neeta Vyas' quality={100} className='img-fluid' />
+                                </div>
+                                <div className="right-content">
+                                    <p className={`member-name ${antonSC?.className}`}>Dr. Neeta Vyas</p>
+                                    <p className={inter?.className}>PhD in Indian Board of Alternative Medicines</p>
+                                    <p className={inter?.className}>Professor at Ahmedabad Institute of Medical Sciences
+                                    </p>
+                                </div>
+                            </div>
+                        </Col>
+                        <Col lg={6} md={6} sm={12} xs={12}>
+                            <div className='member-card mt-3'>
+                                <div className="left-content">
+                                    <Image src={drAshishKakkad} alt='Dr. Ashish Kakkad' quality={100} className='img-fluid' />
+                                </div>
+                                <div className="right-content">
+                                    <p className={`member-name ${antonSC?.className}`}>Dr. Ashish Kakkad</p>
+                                    <p className={inter?.className}>PhD, MPT in Neurological Conditions</p>
+                                    <p className={inter?.className}>Principal at Faculty of Physiotherapy, Marwadi University (MU), Rajkot</p>
+                                </div>
+                            </div>
+                        </Col>
+                        <Col lg={6} md={6} sm={12} xs={12}>
+                            <div className='member-card mt-3'>
+                                <div className="left-content">
+                                    <Image src={drKrishmaJagad} alt='Dr. Karishma Jagad' quality={100} className='img-fluid' />
+                                </div>
+                                <div className="right-content">
+                                    <p className={`member-name ${antonSC?.className}`}>Dr. Karishma Jagad</p>
+                                    <p className={inter?.className}>MPT in Neurological Conditions</p>
+                                    <p className={inter?.className}>Sr. Lecturer at Govt. Physiotherapy College, Jamnagar</p>
+                                </div>
+                            </div>
+                        </Col>
+                    </Row> */}
 
-                    <h5 className='mt-3'>Editor:</h5>
+                    <h5 className='mt-3'>Editors:</h5>
+                    <hr className='mt-0' />
+                    <div className='member-card mt-3'>
+                        <div className="left-content">
+                            {/* <Image src={drMoushumiDebnath} alt='Dr Moushumi Debnath' quality={100} className='img-fluid' /> */}
+                            <FontAwesomeIcon icon={faUser} color='gray' />
+                        </div>
+                        <div className="right-content">
+                            <p className={`member-name ${antonSC?.className}`}>Dr. Urvashi Jadeja</p>
+                            <p className={inter?.className}>PhD Scholar, MPT in Pediatrics</p>
+                            <p className={inter?.className}>I/C Dean, Faculty of Physiotherapy, Swaminarayan University</p>
+                            <p className={inter?.className}><strong>Address:</strong> Swaminarayan University, Ahmedabad - Meshana Highway, Kalol, Gujarat - 382725</p>
+                            <p className={inter?.className}><strong>Email:</strong> <span className='highlight'>deanphysiotherapy@swaminarayanuniversity.ac.in</span></p>
+                        </div>
+                    </div>
+                    <div className='member-card mt-3'>
+                        <div className="left-content">
+                            <Image src={drMaulik} alt='Dr. Maulik Patel' quality={100} className='img-fluid' />
+                            {/* <FontAwesomeIcon icon={faUser} color='gray' /> */}
+                        </div>
+                        <div className="right-content">
+                            <p className={`member-name ${antonSC?.className}`}>Dr. Maulik Patel</p>
+                            <p className={inter?.className}>MD in Pharmacology</p>
+                            <p className={inter?.className}>Prof. & HOD (Pharmacology), SIMSR, Swaminarayan University</p>
+                            <p className={inter?.className}><strong>Address:</strong> Swaminarayan University, Ahmedabad - Meshana Highway, Kalol, Gujarat - 382725</p>
+                            <p className={inter?.className}><strong>Email:</strong> <span className='highlight'>patelmaulik24@gmail.com</span></p>
+                        </div>
+                    </div>
+                    <div className='member-card mt-3'>
+                        <div className="left-content">
+                            {/* <Image src={drMoushumiDebnath} alt='Dr. Moushumi Debnath' quality={100} className='img-fluid' /> */}
+                            <FontAwesomeIcon icon={faUser} color='gray' />
+                        </div>
+                        <div className="right-content">
+                            <p className={`member-name ${antonSC?.className}`}>Saad Ali Alsehemi</p>
+                            <p className={inter?.className}>MPT in Musculoskeletal Conditions</p>
+                            <p className={inter?.className}>Medical Director & Chief Physiotherapist</p>
+                            <p className={inter?.className}><strong>Address:</strong> Physioplans Physiotherapy and Rehabitilation Centre, Abdulmajeed Ibn Abdulaziz, Al Iskan, Madinah, Saudi Arabia - 42224</p>
+                            <p className={inter?.className}><strong>Email:</strong> <span className='highlight'>saadalisafar@gmail.com</span></p>
+                        </div>
+                    </div>
+                    <div className='member-card mt-3'>
+                        <div className="left-content">
+                            {/* <Image src={drMoushumiDebnath} alt='Dr. Moushumi Debnath' quality={100} className='img-fluid' /> */}
+                            <FontAwesomeIcon icon={faUser} color='gray' />
+                        </div>
+                        <div className="right-content">
+                            <p className={`member-name ${antonSC?.className}`}>Mohammed Amjad Khan</p>
+                            <p className={inter?.className}>BPT</p>
+                            <p className={inter?.className}>Sr. Physiotherapist</p>
+                            <p className={inter?.className}><strong>Address:</strong> Physioplans Physiotherapy and Rehabitilation Centre, Abdulmajeed Ibn Abdulaziz, Al Iskan, Madinah, Saudi Arabia - 42224</p>
+                            <p className={inter?.className}><strong>Email:</strong> <span className='highlight'>amjadkhan.mmkk@gmail.com</span></p>
+                        </div>
+                    </div>
+                    <div className='member-card mt-3'>
+                        <div className="left-content">
+                            {/* <Image src={drMoushumiDebnath} alt='Dr. Moushumi Debnath' quality={100} className='img-fluid' /> */}
+                            <FontAwesomeIcon icon={faUser} color='gray' />
+                        </div>
+                        <div className="right-content">
+                            <p className={`member-name ${antonSC?.className}`}>Dr. Yuthika Rao</p>
+                            <p className={inter?.className}>PhD, MPT in Cardiorespiratory Disorders</p>
+                            <p className={inter?.className}>Associate Professor, Mahatma Gandhi Physiotherapy College</p>
+                            <p className={inter?.className}><strong>Address:</strong> Mahatma Gandhi Physiotherapy College, Mahatma Gandhi Rd, Jaipur, Rajasthan - 302022</p>
+                            <p className={inter?.className}><strong>Email:</strong> <span className='highlight'>physioyuths@gmail.com</span></p>
+                        </div>
+                    </div>
+
+                    <h5 className='mt-3'>Reviewers:</h5>
                     <hr className='mt-0' />
 
-                    <Row>
-                        <Col md={6} lg={4}>
-                            <div className='member-card'>
-                                <div className="right-content">
-                                    <p className={`member-name ${inter?.className}`}>Dr. Urvashi Jadeja</p>
-                                    <p className={inter?.className}>PhD Scholar, MPT in Pediatrics</p>
-                                    <p className={inter?.className}>I/C Dean, Faculty of Physiotherapy, Swaminarayan University</p>
-                                    <p className={inter?.className}><strong>Address:</strong> Swaminarayan University, Ahmedabad - Meshana Highway, Kalol, Gujarat - 382725</p>
-                                    <p className={inter?.className}><strong>Email:</strong> <span className='highlight'>deanphysiotherapy@swaminarayanuniversity.ac.in</span></p>
-                                </div>
-                            </div>
-                        </Col>
-                    </Row>
+                    <div className='member-card mt-3'>
+                        <div className="left-content">
+                            {/* <Image src={drDevangiDesai} alt='Dr. Devangi Desai' quality={100} className='img-fluid' /> */}
+                            <FontAwesomeIcon icon={faUser} color='gray' />
+                        </div>
+                        <div className="right-content">
+                            <p className={`member-name ${antonSC?.className}`}>Dr. Payal Adwani</p>
+                            <p className={inter?.className}>MPT in Musculoskeletal Conditions</p>
+                            <p className={inter?.className}>Assistant Professor, Faculty of Physiotherapy, Marwadi University</p>
+                            <p className={inter?.className}><strong>Address:</strong> Marwadi University, Rajkot - Morbi Highway, Rajkot - 360003</p>
+                            <p className={inter?.className}><strong>Email:</strong> <span className='highlight'>payal.adwani@marwadieducation.edu.in</span></p>
+                        </div>
+                    </div>
+                    <div className='member-card mt-3'>
+                        <div className="left-content">
+                            {/* <Image src={drDevangiDesai} alt='Dr. Devangi Desai' quality={100} className='img-fluid' /> */}
+                            <FontAwesomeIcon icon={faUser} color='gray' />
+                        </div>
+                        <div className="right-content">
+                            <p className={`member-name ${antonSC?.className}`}>Dr. Jay Sheth</p>
+                            <p className={inter?.className}>BAMS</p>
+                            <p className={inter?.className}>Consultant at Himalaya Cancer Hospital</p>
+                            <p className={inter?.className}><strong>Address:</strong> Himalaya Cancer Hospital, nr Railway Station, Alkapuri, Vadodara, Gujarat - 390007</p>
+                            <p className={inter?.className}><strong>Email:</strong> <span className='highlight'>jaysheth311@gmail.com</span></p>
+                        </div>
+                    </div>
+                    <div className='member-card mt-3'>
+                        <div className="left-content">
+                            {/* <Image src={drDevangiDesai} alt='Dr. Devangi Desai' quality={100} className='img-fluid' /> */}
+                            <FontAwesomeIcon icon={faUser} color='gray' />
+                        </div>
+                        <div className="right-content">
+                            <p className={`member-name ${antonSC?.className}`}>Dr. Girish Joseph</p>
+                            <p className={inter?.className}>FAIMER Fellowship, CMCL-FAIMER Regional Institute, MD Pharmacology, CMC</p>
+                            <p className={inter?.className}>Assistant Professor, Christian Medical College & Hospital</p>
+                            <p className={inter?.className}><strong>Address:</strong> Christian Medical College & Hospital, CMC Campus, Ludhiana, Punjab - 141008</p>
+                            <p className={inter?.className}><strong>Email:</strong> <span className='highlight'>girishjoseph7@gmail.com</span></p>
+                        </div>
+                    </div>
+                    <div className='member-card mt-3'>
+                        <div className="left-content">
+                            {/* <Image src={drDevangiDesai} alt='Dr. Devangi Desai' quality={100} className='img-fluid' /> */}
+                            <FontAwesomeIcon icon={faUser} color='gray' />
+                        </div>
+                        <div className="right-content">
+                            <p className={`member-name ${antonSC?.className}`}>Dr. Madhurika Kate</p>
+                            <p className={inter?.className}>PhD Scholar, MPT in Neuro Sciences</p>
+                            <p className={inter?.className}>Assistant Professor, Nanded Physiotherapy College & Research Center</p>
+                            <p className={inter?.className}><strong>Address:</strong> Nanded Physiotherapy College & Research Center, Nanded, Maharashtra - 431606</p>
+                            <p className={inter?.className}><strong>Email:</strong> <span className='highlight'>dr.madhurkaneurophysio@gmail.com</span></p>
+                        </div>
+                    </div>
                 </div>
             </section>
         </>

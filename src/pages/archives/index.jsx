@@ -25,12 +25,7 @@ function Archives ({ data }) {
     const [isCopied, setIsCopied] = useState(false)
     const [openAccordionIndex, setOpenAccordionIndex] = useState(0);
     const [btnToggle, setBtnToggle] = useState({
-        volOne: false,
-        volTwo: false,
-        volThree: false,
-        volFour: false,
-        volFive: false,
-        volTwentyFive: true
+        '2026': true,
     })
 
     const handleCopyLink = async (link) => {
@@ -134,173 +129,21 @@ function Archives ({ data }) {
                         <hr className='mt-0' />
 
                         <div className={``}>
-                            {/* <div className={`all-tabs`}>
-                                <span className={`tab ${inter?.className} ${btnToggle?.volOne ? `active` : ''}`} onClick={() => setBtnToggle({ volOne: true })}>
-                                    2013
+                            <div className={`all-tabs`}>
+                                <span className={`tab ${inter?.className} ${btnToggle?.['2026'] ? `active` : ''}`} onClick={() => setBtnToggle({ '2026': true })}>
+                                    2026
                                 </span>
-                                <span className={`tab ${inter?.className} ${btnToggle?.volTwo ? `active` : ''}`} onClick={() => setBtnToggle({ volTwo: true })}>
-                                    2014
-                                </span>
-                                <span className={`tab ${inter?.className} ${btnToggle?.volThree ? `active` : ''}`} onClick={() => setBtnToggle({ volThree: true })}>
-                                    2015
-                                </span>
-                                <span className={`tab ${inter?.className} ${btnToggle?.volFour ? `active` : ''}`} onClick={() => setBtnToggle({ volFour: true })}>
-                                    2016
-                                </span>
-                                <span className={`tab ${inter?.className} ${btnToggle?.volFive ? `active` : ''}`} onClick={() => setBtnToggle({ volFive: true })}>
-                                    2017
-                                </span>
-                                <span className={`tab ${inter?.className} ${btnToggle?.volTwentyFive ? `active` : ''}`} onClick={() => setBtnToggle({ volTwentyFive: true })}>
-                                    2025
-                                </span>
-                            </div> */}
+                            </div>
 
                             <div className={`tab-content`}>
-                                {/* //! Here volOne is not for volume, its Issue Number */}
-                                {btnToggle?.volOne && (<>
+                                {btnToggle?.['2026'] && (<>
                                     <Row>
-                                        {archiveList?.[2013]?.map(({ _id, sName, sImage, sPdfFile, aJournals }) => {
-                                            return (
-                                                <Col lg={2} md={4} sm={12} key={_id}>
-                                                    <div className='issue-card' onClick={() => {
-                                                        aJournals?.length > 0 ? router.push({
-                                                            pathname: `/articles/Volume-2/Issue-1`,
-                                                            query: { publishedDate: 'February, 2025' }
-                                                        })
-                                                            : window.open(sPdfFile, "_blank")
-                                                    }}>
-                                                        <div className='card-top'>
-                                                            <LazyLoadImage
-                                                                alt={sName}
-                                                                src={sImage}
-                                                                effect='blur'
-                                                                className='img-fluid'
-                                                                threshold={100}
-                                                            />
-                                                        </div>
-                                                        <div className='card-bottom'>
-                                                            <p className={inter?.className}>{sName}</p>
-                                                        </div>
-                                                    </div>
-                                                </Col>
-                                            )
-                                        })}
-                                    </Row>
-                                </>)}
-
-                                {btnToggle?.volTwo && (<>
-                                    <Row>
-                                        {archiveList?.[2014]?.map(({ _id, sName, sImage, sPdfFile }) => {
-                                            return (
-                                                <Col lg={2} key={_id}>
-                                                    <div className='issue-card' onClick={() => window.open(sPdfFile, "_blank")}>
-                                                        <div className='card-top'>
-                                                            <LazyLoadImage
-                                                                alt={sName}
-                                                                src={sImage}
-                                                                effect='blur'
-                                                                className='img-fluid'
-                                                                threshold={100}
-                                                            />
-                                                        </div>
-                                                        <div className='card-bottom'>
-                                                            <p className={inter?.className}>{sName}</p>
-                                                        </div>
-                                                    </div>
-                                                </Col>
-                                            )
-                                        })}
-                                    </Row>
-                                </>)}
-
-                                {btnToggle?.volThree && (<>
-                                    <Row>
-                                        {archiveList?.[2015]?.map(({ _id, sName, sImage, sPdfFile }) => {
-                                            return (
-                                                <Col lg={2} key={_id}>
-                                                    <div className='issue-card' onClick={() => window.open(sPdfFile, "_blank")}>
-                                                        <div className='card-top'>
-                                                            <LazyLoadImage
-                                                                alt={sName}
-                                                                src={sImage}
-                                                                effect='blur'
-                                                                className='img-fluid'
-                                                                threshold={100}
-                                                            />
-                                                        </div>
-                                                        <div className='card-bottom'>
-                                                            <p className={inter?.className}>{sName}</p>
-                                                        </div>
-                                                    </div>
-                                                </Col>
-                                            )
-                                        })}
-                                    </Row>
-                                </>)}
-
-                                {btnToggle?.volFour && (<>
-                                    <Row>
-                                        {archiveList?.[2016]?.map(({ _id, sName, sImage, sPdfFile }) => {
-                                            return (
-                                                <Col lg={2} key={_id}>
-                                                    <div className='issue-card' onClick={() => window.open(sPdfFile, "_blank")}>
-                                                        <div className='card-top'>
-                                                            <LazyLoadImage
-                                                                alt={sName}
-                                                                src={sImage}
-                                                                effect='blur'
-                                                                className='img-fluid'
-                                                                threshold={100}
-                                                            />
-                                                        </div>
-                                                        <div className='card-bottom'>
-                                                            <p className={inter?.className}>{sName}</p>
-                                                        </div>
-                                                    </div>
-                                                </Col>
-                                            )
-                                        })}
-                                    </Row>
-                                </>)}
-
-                                {btnToggle?.volFive && (<>
-                                    <Row>
-                                        {archiveList?.[2017]?.map(({ _id, sName, sImage, sPdfFile, aJournals, sIssue, sVolume }) => {
+                                        {archiveList?.[2026]?.map(({ _id, sName, sImage, sPdfFile, aJournals, sIssue, sVolume }) => {
                                             return (
                                                 <Col lg={2} key={_id}>
                                                     <div className='issue-card' onClick={() => {
                                                         aJournals?.length > 0 ? router.push({
-                                                            pathname: `/archives/2017/${sVolume}/${sIssue}`,
-                                                        })
-                                                            : window.open(sPdfFile, "_blank")
-                                                    }}>
-                                                        <div className='card-top'>
-                                                            <LazyLoadImage
-                                                                alt={sName}
-                                                                src={sImage}
-                                                                effect='blur'
-                                                                className='img-fluid'
-                                                                threshold={100}
-                                                            />
-                                                        </div>
-                                                        <div className='card-bottom'>
-                                                            <p className={inter?.className}>{sName}</p>
-                                                        </div>
-                                                    </div>
-                                                </Col>
-                                            )
-                                        })}
-                                    </Row>
-                                </>)}
-
-                                {btnToggle?.volTwentyFive && (<>
-                                    <Row>
-                                        {archiveList?.[2025]?.map(({ _id, sName, sImage, sPdfFile, aJournals, sIssue, sVolume }) => {
-                                            return (
-                                                <Col lg={2} key={_id}>
-                                                    <div className='issue-card' onClick={() => {
-                                                        aJournals?.length > 0 ? router.push({
-                                                            pathname: `/archives/2025/${sVolume}/${sIssue}`,
+                                                            pathname: `/archives/2026/${sVolume}/${sIssue}`,
                                                         })
                                                             : window.open(sPdfFile, "_blank")
                                                     }}>

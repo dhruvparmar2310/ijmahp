@@ -379,14 +379,14 @@ function ArchiveID ({ data }) {
 
                                         <h1 className={inter?.className}>{articleData?.citation_title}</h1>
                                         <p className={`author-name ${inter?.className}`}> {articleData?.citation_author?.map(item => item)?.join(', ')} </p>
-                                        <p
+                                        {/* <p
                                             className={`doi-number ${inter?.className}`}
                                             onClick={() => {
                                                 articleData?.sPdfFile !== '-' ? handleDOINavigation() : ''
                                             }}
                                         >
                                             DOI: {articleData?.sDOINo || 'Not Assigned'}
-                                        </p>
+                                        </p> */}
                                     </div>
                                 </div>
                                 {/*  -heading='Article'>{archiveID?.[2]}</h1> */}
