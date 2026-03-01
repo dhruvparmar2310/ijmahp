@@ -7,6 +7,16 @@ import drMihirdev from '../../public/assets/img/members/Mihirdev Jhala.PNG'
 import drAmit from '../../public/assets/img/members/DR. AMIT M PATEL PT.png'
 import drMaulik from '../../public/assets/img/members/Maulik Patel.jpeg'
 import drNehal from '../../public/assets/img/members/Nehal Shah.jpeg'
+import drGirish from '../../public/assets/img/members/Dr.Girish Joseph.jpeg'
+import drIsha from '../../public/assets/img/members/Dr.Isha Tapasvi.jpeg'
+import drMadhurika from '../../public/assets/img/members/Dr.Madhurika Kate.jpeg'
+import drPayal from '../../public/assets/img/members/Dr.Payal Adwani.jpeg'
+import drRatul from '../../public/assets/img/members/Dr.Ratul-Dey.jpeg'
+import drSandeep from '../../public/assets/img/members/Dr.Sandeep Kumar.jpeg'
+import drBhagyalaxmi from '../../public/assets/img/members/Dr.Aroor Bhagyalaxmi.jpeg'
+import drUrvashi from '../../public/assets/img/members/Dr.Urvashi Jadeja.jpeg'
+import drVikas from '../../public/assets/img/members/Dr.Vikas Gupta.jpeg'
+import drVanita from '../../public/assets/img/members/Dr.Vanita Keshav.jpeg'
 
 import Head from 'next/head'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -148,7 +158,32 @@ const EditorialBoard = () => {
                             <p className={inter?.className}>PhD, MPT in Orthopedic</p>
                             <p className={inter?.className}>Sr. Lecturer & PG Guide, JG College of Physiotherapy</p>
                             <p className={inter?.className}><strong>Address:</strong> JG College of Physiotherapy, Opp. Gulab Tower, Ahmedabad, Gujarat - 380061</p>
-                            <p className={inter?.className}><strong>Email:</strong> <span className='highlight'>amit.jgphsio@jgcolleges.org</span></p>
+                            <p className={inter?.className}><strong>Email:</strong> <span className='highlight'>amit.jgphysio@jgcolleges.org</span></p>
+                        </div>
+                    </div>
+                    <div className='member-card  mt-3'>
+                        <div className="left-content">
+                            <Image src={drRatul} alt='Dr. Ratul Dey' quality={100} className='img-fluid' />
+                        </div>
+                        <div className="right-content">
+                            <p className={`member-name ${antonSC?.className}`}>Dr. Ratul Dey</p>
+                            <p className={inter?.className}>Master of Science in Audiology</p>
+                            <p className={inter?.className}>Associate Professor (Audiology), Dept of ENT</p>
+                            <p className={inter?.className}><strong>Address:</strong> GGS Medical College, Faridkot - 151203</p>
+                            <p className={inter?.className}><strong>Email:</strong> <span className='highlight'>ratuldey@ggsmch.org</span></p>
+                        </div>
+                    </div>
+                    <div className='member-card  mt-3'>
+                        <div className="left-content">
+                            <Image src={drBhagyalaxmi} alt='Dr. A. Bhagyalaxmi' quality={100} className='img-fluid' />
+                        </div>
+                        <div className="right-content">
+                            <p className={`member-name ${antonSC?.className}`}>Dr. A. Bhagyalaxmi</p>
+                            <p className={inter?.className}>MBBS MD</p>
+                            <p className={inter?.className}>Professor and Head Community Medicine Department</p>
+                            <p className={inter?.className}><strong>Address:</strong> B J Medical College Ahmedbad
+                                NCH Campus Asarwa - 380016</p>
+                            <p className={inter?.className}><strong>Email:</strong> <span className='highlight'>bhagya.mardi@gmail.com</span></p>
                         </div>
                     </div>
 
@@ -223,8 +258,8 @@ const EditorialBoard = () => {
                     <hr className='mt-0' />
                     <div className='member-card mt-3'>
                         <div className="left-content">
-                            {/* <Image src={drMoushumiDebnath} alt='Dr Moushumi Debnath' quality={100} className='img-fluid' /> */}
-                            <FontAwesomeIcon icon={faUser} color='gray' />
+                            <Image src={drUrvashi} alt='Dr. Urvashi Jadeja' quality={100} className='img-fluid' />
+                            {/* <FontAwesomeIcon icon={faUser} color='gray' /> */}
                         </div>
                         <div className="right-content">
                             <p className={`member-name ${antonSC?.className}`}>Dr. Urvashi Jadeja</p>
@@ -286,14 +321,77 @@ const EditorialBoard = () => {
                             <p className={inter?.className}><strong>Email:</strong> <span className='highlight'>physioyuths@gmail.com</span></p>
                         </div>
                     </div>
+                    <div className='member-card mt-3'>
+                        <div className="left-content">
+                            <Image src={drVikas} alt='Dr. Vikas Gupta' quality={100} className='img-fluid' />
+                        </div>
+                        <div className="right-content">
+                            <p className={`member-name ${antonSC?.className}`}>Dr. Vikas Gupta</p>
+                            <p className={inter?.className}>M.Pharma, Ph.D.</p>
+                            <p className={inter?.className}>Assistant Director-cum-Associate Professor</p>
+                            <p className={inter?.className}><strong>Address:</strong> UCER, Baba Farid University of Health Sciences, Faridkot, Punjab - 151203</p>
+                            <p className={inter?.className}><strong>Email:</strong> <span className='highlight'>vikas_4308@rediffmail.com</span></p>
+                        </div>
+                    </div>
+                    <div className='member-card mt-3'>
+                        <div className="left-content">
+                            <Image src={drSandeep} alt='Dr. Sandeep Kumar' quality={100} className='img-fluid' />
+                        </div>
+                        <div className="right-content">
+                            <p className={`member-name ${antonSC?.className}`}>Dr. Sandeep Kumar</p>
+                            <p className={inter?.className}>MPT in Orthopaedics</p>
+                            <p className={inter?.className}>Associate Professor</p>
+                            <p className={inter?.className}><strong>Address:</strong> UCER, Baba Farid University of Health Sciences, Faridkot, Punjab - 151203</p>
+                            <p className={inter?.className}><strong>Email:</strong> <span className='highlight'>drsandeep@ggsmch.org</span></p>
+                        </div>
+                    </div>
+                    <div className='member-card mt-3'>
+                        <div className="left-content">
+                            <Image src={drIsha} alt='Dr. Isha Tapasvi' quality={100} className='img-fluid' />
+                            {/* <FontAwesomeIcon icon={faUser} color='gray' /> */}
+                        </div>
+                        <div className="right-content">
+                            <p className={`member-name ${antonSC?.className}`}>Dr. Isha Tapasvi</p>
+                            <p className={inter?.className}>MBBS , DNB (OBG ) , Certified course in Gynecology Oncology</p>
+                            <p className={inter?.className}>Professor</p>
+                            <p className={inter?.className}><strong>Address:</strong> Guru Gobind Singh Medical College, Faridkot, Punjab - 151203</p>
+                            <p className={inter?.className}><strong>Email:</strong> <span className='highlight'>ishatapasvi@ggsmch.org</span></p>
+                        </div>
+                    </div>
 
                     <h5 className='mt-3'>Reviewers:</h5>
                     <hr className='mt-0' />
 
                     <div className='member-card mt-3'>
                         <div className="left-content">
-                            {/* <Image src={drDevangiDesai} alt='Dr. Devangi Desai' quality={100} className='img-fluid' /> */}
-                            <FontAwesomeIcon icon={faUser} color='gray' />
+                            <Image src={drVanita} alt='Dr. Vanita Keshav' quality={100} className='img-fluid' />
+                            {/* <FontAwesomeIcon icon={faUser} color='gray' /> */}
+                        </div>
+                        <div className="right-content">
+                            <p className={`member-name ${antonSC?.className}`}>Dr. Vanita Keshav</p>
+                            <p className={inter?.className}>MDS Conservative Dentistry and Endodontics</p>
+                            <p className={inter?.className}>Professor</p>
+                            <p className={inter?.className}><strong>Address:</strong> Dasmesh Institute of Research and Dental Sciences, Faridkot, Punjab - 151203</p>
+                            <p className={inter?.className}><strong>Email:</strong> <span className='highlight'>vin5j@yahoo.com</span></p>
+                        </div>
+                    </div>
+                    <div className='member-card mt-3'>
+                        <div className="left-content">
+                            <Image src={drGirish} alt='Dr. Girish Joseph' quality={100} className='img-fluid' />
+                            {/* <FontAwesomeIcon icon={faUser} color='gray' /> */}
+                        </div>
+                        <div className="right-content">
+                            <p className={`member-name ${antonSC?.className}`}>Dr. Girish Joseph</p>
+                            <p className={inter?.className}>MD Pharmacology</p>
+                            <p className={inter?.className}>Assistant Professor, Pharmacology</p>
+                            <p className={inter?.className}><strong>Address:</strong> Christian Medical College, Ludhiana, Punjab - 141008</p>
+                            <p className={inter?.className}><strong>Email:</strong> <span className='highlight'>girishjoseph7@gmail.com</span></p>
+                        </div>
+                    </div>
+                    <div className='member-card mt-3'>
+                        <div className="left-content">
+                            <Image src={drPayal} alt='Dr. Payal Adwani' quality={100} className='img-fluid' />
+                            {/* <FontAwesomeIcon icon={faUser} color='gray' /> */}
                         </div>
                         <div className="right-content">
                             <p className={`member-name ${antonSC?.className}`}>Dr. Payal Adwani</p>
@@ -303,9 +401,8 @@ const EditorialBoard = () => {
                             <p className={inter?.className}><strong>Email:</strong> <span className='highlight'>payal.adwani@marwadieducation.edu.in</span></p>
                         </div>
                     </div>
-                    <div className='member-card mt-3'>
+                    {/* <div className='member-card mt-3'>
                         <div className="left-content">
-                            {/* <Image src={drDevangiDesai} alt='Dr. Devangi Desai' quality={100} className='img-fluid' /> */}
                             <FontAwesomeIcon icon={faUser} color='gray' />
                         </div>
                         <div className="right-content">
@@ -315,29 +412,17 @@ const EditorialBoard = () => {
                             <p className={inter?.className}><strong>Address:</strong> Himalaya Cancer Hospital, nr Railway Station, Alkapuri, Vadodara, Gujarat - 390007</p>
                             <p className={inter?.className}><strong>Email:</strong> <span className='highlight'>jaysheth311@gmail.com</span></p>
                         </div>
-                    </div>
+                    </div> */}
+
                     <div className='member-card mt-3'>
                         <div className="left-content">
-                            {/* <Image src={drDevangiDesai} alt='Dr. Devangi Desai' quality={100} className='img-fluid' /> */}
-                            <FontAwesomeIcon icon={faUser} color='gray' />
-                        </div>
-                        <div className="right-content">
-                            <p className={`member-name ${antonSC?.className}`}>Dr. Girish Joseph</p>
-                            <p className={inter?.className}>FAIMER Fellowship, CMCL-FAIMER Regional Institute, MD Pharmacology, CMC</p>
-                            <p className={inter?.className}>Assistant Professor, Christian Medical College & Hospital</p>
-                            <p className={inter?.className}><strong>Address:</strong> Christian Medical College & Hospital, CMC Campus, Ludhiana, Punjab - 141008</p>
-                            <p className={inter?.className}><strong>Email:</strong> <span className='highlight'>girishjoseph7@gmail.com</span></p>
-                        </div>
-                    </div>
-                    <div className='member-card mt-3'>
-                        <div className="left-content">
-                            {/* <Image src={drDevangiDesai} alt='Dr. Devangi Desai' quality={100} className='img-fluid' /> */}
-                            <FontAwesomeIcon icon={faUser} color='gray' />
+                            <Image src={drMadhurika} alt='Dr. Madhurika Kate' quality={100} className='img-fluid' />
+                            {/* <FontAwesomeIcon icon={faUser} color='gray' /> */}
                         </div>
                         <div className="right-content">
                             <p className={`member-name ${antonSC?.className}`}>Dr. Madhurika Kate</p>
                             <p className={inter?.className}>PhD Scholar, MPT in Neuro Sciences</p>
-                            <p className={inter?.className}>Assistant Professor, Nanded Physiotherapy College & Research Center</p>
+                            <p className={inter?.className}>Associate Professor, Nanded Physiotherapy College & Research Center</p>
                             <p className={inter?.className}><strong>Address:</strong> Nanded Physiotherapy College & Research Center, Nanded, Maharashtra - 431606</p>
                             <p className={inter?.className}><strong>Email:</strong> <span className='highlight'>dr.madhurkaneurophysio@gmail.com</span></p>
                         </div>
